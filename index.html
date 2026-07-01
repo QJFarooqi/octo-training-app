@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Manager</title>
+    <title>Task Manager + Study Coach</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js"></script>
   </head>
@@ -73,6 +73,71 @@
       >
         Clear completed
       </button>
+
+      <!-- Add this section inside <main class="container"> after the task manager -->
+
+      <section class="study-coach" aria-labelledby="coach-heading">
+        <h2 id="coach-heading">AI Study Coach</h2>
+        <p class="section-intro">
+          Generate a personalised study plan with your AI assistant using the
+          prompt below, then paste the raw JSON output here to render your plan.
+        </p>
+
+        <details class="prompt-reference">
+          <summary>Show prompt template</summary>
+          <pre id="prompt-template" data-testid="prompt-template">
+Loading prompt template...
+    </pre
+          >
+          <button type="button" id="copy-prompt" data-testid="copy-prompt-btn">
+            Copy prompt
+          </button>
+        </details>
+
+        <form id="coach-form" data-testid="coach-form" novalidate>
+          <label for="plan-input">Paste your AI-generated JSON plan here</label>
+          <textarea
+            id="plan-input"
+            data-testid="coach-form-textarea"
+            rows="10"
+            placeholder='{ "planTitle": "...", "topics": [...] }'
+            spellcheck="false"
+            aria-describedby="coach-error"
+          ></textarea>
+
+          <div class="form-actions">
+            <button
+              type="submit"
+              id="parse-btn"
+              data-testid="coach-form-submit"
+            >
+              Parse Plan
+            </button>
+            <button
+              type="button"
+              id="clear-plan"
+              class="secondary"
+              data-testid="coach-clear-btn"
+            >
+              Clear saved plan
+            </button>
+          </div>
+
+          <p
+            id="coach-error"
+            class="error"
+            role="alert"
+            aria-live="assertive"
+          ></p>
+        </form>
+
+        <div
+          id="coach-output"
+          data-testid="coach-output"
+          aria-live="polite"
+          aria-label="Study plan output"
+        ></div>
+      </section>
     </main>
 
     <script type="module" src="app.js"></script>
