@@ -26,7 +26,7 @@ export function addTask(title) {
 
   const tasks = loadTasks();
   const newTask = {
-    id: Date.now(),
+    id: Date.now() + Math.random(),
     title: trimmed,
     completed: false,
     createdAt: new Date().toISOString(),
